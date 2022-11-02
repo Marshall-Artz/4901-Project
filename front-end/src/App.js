@@ -1,12 +1,13 @@
 import './App.css';
+import Banner from './components/Banner';
+import Text from './components/Text';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Test
-        </p>
+        <Banner/>
+        <Text/>
       </header>
     </div>
   );
