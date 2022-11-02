@@ -8,5 +8,7 @@
     display: block;
     background-color: #22252c;
     margin: 10px;
-    width: 100px;
+    width: 700px;
+    color: aliceblue;
+    font-size: 15px;
 }

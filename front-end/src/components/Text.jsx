@@ -8,7 +8,7 @@ const Text = () => {
   return (
     <TextareaAutosize className='Input'
       aria-label="empty textarea"
-      placeholder="Empty"
+      placeholder="Enter text here!"
       minRows={20}
     />
   );
