@@ -9,8 +9,8 @@ class ProductDescription extends Component {
     super();
     this.state = {
       model: "text-babbage-001",
-      heading: "The Response From The AI Will Be Shown Here",
-      response: "... awaiting response ...",
+      heading: "AI Output shown below",
+      response: "... awaiting input ...",
       aiActivated: false, // track whether AI has been activated
       showRerunButton: false // track whether to show the 'rerun' button
     };
@@ -30,7 +30,7 @@ class ProductDescription extends Component {
     console.log(formDataObj.productName);
 
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
 
@@ -93,7 +93,7 @@ class ProductDescription extends Component {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Insert TEXT you would like to convert to CODE</Form.Label>
               <Form.Control type="text" name="productName" placeholder="Enter Text" />
-              <Form.Text className="text-muted">Enter specific text below</Form.Text>
+              <Form.Text className="text-muted">You can be as simple / detailed as you like!</Form.Text>
             </Form.Group>
             <Button variant="primary" size="lg" type="submit">
               Launch AI

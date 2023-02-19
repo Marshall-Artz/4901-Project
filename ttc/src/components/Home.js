@@ -16,16 +16,15 @@ class Home extends Component{
                     </Carousel>
                     <br/>
                     <br/>
-                    <h1>Text to Code with OpenAI</h1>
-                    <p>Input text in the field</p>
+                    <h1>Welcome to text-TO-code</h1>
+                    <p>Powered by OpenAI</p>
                     <br/>
                     <br/>
                     <Row>
                         <Col>
                             <Display
-                            header = "Product Descriptions"
-                            title = "Generate Prod Desc"
-                            text = "This platform will take your text and convert it to code"
+                            title = "Learn how to write edit and think in code"
+                            text = "This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding."
                             theLink = "/products-description" />
                         </Col>
                     </Row>

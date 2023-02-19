@@ -22,9 +22,7 @@ class Navigation extends Component{
 
                     <Navbar.Collapse>
                         <Nav>
-                            <Nav.Link href="products-description"> Product Description </Nav.Link>
-                            <Nav.Link href="cold-emails"> Cold Emails </Nav.Link>
-                            <Nav.Link href="products-description"> Tweets </Nav.Link>
+                            <Nav.Link href="products-description"> TTC </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
 
