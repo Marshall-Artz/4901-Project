@@ -8,7 +8,7 @@ class ProductDescription extends Component {
   constructor() {
     super();
     this.state = {
-      model: "text-babbage-001",
+      model: "text-davinci-003",
       heading: "AI Output shown below",
       response: "... awaiting input ...",
       aiActivated: false, // track whether AI has been activated
@@ -30,7 +30,7 @@ class ProductDescription extends Component {
     console.log(formDataObj.productName);
 
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
 
@@ -116,18 +116,7 @@ class ProductDescription extends Component {
               </Card.Text>
             </Card.Body>
           </Card>
-  
-          {aiActivated && model === "text-babbage-001" && showRerunButton && (
-            <Button onClick={(e) => this.switchModel("text-davinci-003", e)}>
-                Rerun with text-davinci-003 model (may take longer)
-            </Button>
-            )}
 
-            {aiActivated && model === "text-davinci-003" && showRerunButton && (
-            <Button onClick={(e) => this.switchModel("text-davinci-003", e)}>
-                Rerun with text-davinci-003 model (may take longer)
-            </Button>
-            )}
         </Container>
   
         <br />
