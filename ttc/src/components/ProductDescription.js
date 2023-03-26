@@ -85,14 +85,14 @@ class ProductDescription extends Component {
         <Container>
           <br />
           <br />
-          <h1>Welcome to text-TO-code</h1>
+          <h1 style={{fontFamily:'Verdana',fontSize : '32px',textTransform: 'uppercase'}}>Welcome to text-TO-code</h1>
           <br />
           <br />
           <br />
           <Form onSubmit={this.onFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Insert TEXT you would like to convert to CODE</Form.Label>
-              <Form.Control type="text" name="productName" placeholder="Enter Text" />
+              <Form.Label style={{fontFamily:'Verdana',fontSize : '18px'}}>Insert TEXT you would like to convert to CODE</Form.Label>
+              <Form.Control type="text" name="productName" placeholder="Enter Text" style={{backgroundColor:'#000000',color:'#ffffff',height:'150px',verticalAlign:'top',outline:'none'}} />
               <Form.Text className="text-muted">You can be as simple / detailed as you like!</Form.Text>
             </Form.Group>
             <Button variant="primary" size="lg" type="submit">
@@ -104,7 +104,7 @@ class ProductDescription extends Component {
   
           <br />
           <br />
-          <Card>
+          <Card style={{backgroundColor:'#000000',color:'#ffffff'}}>
             <Card.Body>
               <Card.Title>
                 <h1>{heading}</h1>
