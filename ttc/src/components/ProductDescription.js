@@ -30,7 +30,7 @@ class ProductDescription extends Component {
     console.log(formDataObj.productName);
 
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
 
