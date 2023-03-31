@@ -34,19 +34,14 @@ class Home extends Component{
                     <p style={{fontFamily:'Verdana',fontSize : '18px'}}>
                     This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding.
                         
-                    </p>                 
-                    <button type="button" class="btn btn-dark" style={{fontFamily:'Verdana',fontSize : '18px'}}>Get Started</button>  
+                    </p>
+                    <a href="/products-description">
+                 
+                    <button theLink = "/products-description" type="button" class="btn btn-dark" style={{fontFamily:'Verdana',fontSize : '18px'}}>Get Started </button>  
+                    </a>
                     </div>
                     <br/>
                     <br/>
-                    <Row>
-                        <Col>
-                            <Display
-                            title = "Learn how to write edit and think in code" 
-                            text = "This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding."
-                            theLink = "/products-description" />
-                        </Col>
-                    </Row>
                     <br/>
                     <br/>
                     <br/>

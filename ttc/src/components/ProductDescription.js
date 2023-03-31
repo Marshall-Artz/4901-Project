@@ -1,6 +1,8 @@
 import React from "react";
 import { Component } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 const { Configuration, OpenAIApi } = require("openai");
 const LRU = require("lru-cache");
 
@@ -30,7 +32,7 @@ class ProductDescription extends Component {
     console.log(formDataObj.productName);
 
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
 
@@ -76,57 +78,50 @@ class ProductDescription extends Component {
     });
   };
   
-  
   render() {
-    const { model, heading, response, aiActivated, showRerunButton } = this.state;
-  
-    return (
-      <div>
-        <Container>
-          <br />
-          <br />
-          <h1 style={{fontFamily:'Verdana',fontSize : '32px',textTransform: 'uppercase'}}>Welcome to text-TO-code</h1>
-          <br />
-          <br />
-          <br />
-          <Form onSubmit={this.onFormSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label style={{fontFamily:'Verdana',fontSize : '18px'}}>Insert TEXT you would like to convert to CODE</Form.Label>
-              <Form.Control type="text" name="productName" placeholder="Enter Text" style={{backgroundColor:'#000000',color:'#ffffff',height:'150px',verticalAlign:'top',outline:'none'}} />
-              <Form.Text className="text-muted">You can be as simple / detailed as you like!</Form.Text>
-            </Form.Group>
-            <Button variant="primary" size="lg" type="submit">
-              Launch AI
-            </Button>
+  const { model, heading, response, aiActivated, showRerunButton } = this.state;
 
-            
-          </Form>
-  
-          <br />
-          <br />
-          <Card style={{backgroundColor:'#000000',color:'#ffffff'}}>
-            <Card.Body>
-              <Card.Title>
-                <h1>{heading}</h1>
-              </Card.Title>
-              <hr />
-              <br />
-              <Card.Text>
-                <h4>{response}</h4>
-              </Card.Text>
-            </Card.Body>
-          </Card>
+  return (
+    <div>
+      <Container>
+        <br />
+        <br />
+        <h1 style={{ fontFamily: 'Verdana', fontSize: '32px', textTransform: 'uppercase' }}>Welcome to text-TO-code</h1>
+        <br />
+        <br />
+        <br />
+        <Form onSubmit={this.onFormSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label style={{ fontFamily: 'Verdana', fontSize: '18px' }}>Insert TEXT you would like to convert to CODE</Form.Label>
+            <Form.Control as="textarea" rows={4} name="productName" placeholder="Enter Text" style={{ backgroundColor: '#000000', color: '#ffffff', verticalAlign: 'top', outline: 'none', resize: 'none' }} />
+            <Form.Text className="text-muted">You can be as simple / detailed as you like!</Form.Text>
+          </Form.Group>
+          <Button variant="primary" size="lg" type="submit">
+            Launch AI
+          </Button>
+        </Form>
 
-        </Container>
-  
         <br />
         <br />
-        <br />
-        <br />
-      </div>
-    );
-  }
-  
+        <Card style={{ backgroundColor: '#000000', color: '#ffffff' }}>
+          <Card.Body>
+            <Card.Title>
+              <h1>{heading}</h1>
+            </Card.Title>
+            <hr />
+            <br />
+            <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '16px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5' }}>
+              <SyntaxHighlighter language="javascript" style={tomorrow}>
+                {response}
+              </SyntaxHighlighter>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Container>
+
+      <br /><br /><br /><br />
+    </div>
+  );
 }
-    
-    export default ProductDescription;
+} 
+export default ProductDescription;
