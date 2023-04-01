@@ -2,7 +2,7 @@ import React from "react"
 import { Component } from "react"
 import 'bootstrap/dist/css/bootstrap.css'
 import { Nav, Navbar } from 'react-bootstrap'
-import logo from '../logo.png';
+import logo from "../logo.svg"
 
 
 // ADD LOGO ABOVE 'text TO code'
@@ -14,7 +14,7 @@ class Navigation extends Component{
             <div>
                 <Navbar bg = "dark" variant="dark" sticky="top" expand="md" collapseOnSelect>
                 <Navbar.Brand href="/">
-                <img alt={"logo"} src = {logo} width="50px" />
+                <img alt={"logo"} style={{ backgroundColor: "aqua", marginLeft: '20px'}}  src = {logo} width="50px" />
                    &nbsp;&nbsp;&nbsp; Home
                 </Navbar.Brand>
 
