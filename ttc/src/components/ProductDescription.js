@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 const { Configuration, OpenAIApi } = require("openai");
 const LRU = require("lru-cache");
-
+//FIXED
 class ProductDescription extends Component {
   constructor() {
     super();
@@ -41,7 +41,7 @@ class ProductDescription extends Component {
         model: this.state.model,
         prompt: formDataObj.productName,
         temperature: 0.5,
-        max_tokens: 250,
+        max_tokens: 500,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
