@@ -8,7 +8,7 @@ import logo from "../logo.svg"
 class Home extends Component{
     render() {
         return (
-            <div>
+            <div style={{backgroundColor:'#0a0a0a'}}>
                 <Container style={{ backgroundColor: '#0a0a0a' }}>
                     <br/>
                     <br/>
