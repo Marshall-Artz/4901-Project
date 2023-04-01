@@ -1,8 +1,13 @@
-import React from "react";
-import { Component } from "react";
+import React, { Component } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+import CustomSyntaxHighlighter from './CustomSyntaxHighlighter';
+import { Resizable } from "react-resizable";
+import "react-resizable/css/styles.css";
+import Draggable from "react-draggable";
+import TextareaAutosize from "react-textarea-autosize";
+import { neonTomorrow } from './neonTomorrow';
+
 const { Configuration, OpenAIApi } = require("openai");
 const LRU = require("lru-cache");
 
@@ -23,146 +28,109 @@ class ProductDescription extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const formDataObj = Object.fromEntries(formData.entries());
-    console.log(formDataObj.productName);
-
-    const configuration = new Configuration({
-      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-    });
+    const formDataObj = Object.fromEntries(new FormData(e.target).entries());
+  
+    const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
     const openai = new OpenAIApi(configuration);
-
-    openai
-      .createCompletion({
-        model: this.state.model,
-        prompt: formDataObj.productName,
-        temperature: 0.5,
-        max_tokens: 500,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      })
-      .then((response) => {
-        this.setState(
-          {
-            heading: `AI TTC output below`,
-            response: `${response.data.choices[0].text}`,
-            aiActivated: true,
-            showRerunButton: true,
-          },
-          () => {
-            this.setState({ codeDescription: formDataObj.productName });
-          }
-        );
+    openai.createCompletion({
+      model: this.state.model,
+      prompt: formDataObj.productName,
+      temperature: 0.25,
+      max_tokens: 1000,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    }).then((response) => {
+      // Apply filter to response
+      const filteredResponse = response.data.choices[0].text.replace(/PERSONAL_INFO_REGEX/g, "*****");
+      
+      this.setState({
+        heading: `AI TTC output below`,
+        response: filteredResponse,
+        aiActivated: true,
+        showRerunButton: true,
+      }, () => {
+        this.setState({ codeDescription: formDataObj.productName });
       });
+    });
   };
+  
 
   onExplainSubmit = (e) => {
     e.preventDefault();
-    this.explainCode(this.state.response);
-  };
-
-  explainCode = (codeSnippet) => {
-    const { codeDescription } = this.state;
-    if (!codeDescription) {
-      return;
-    }
-    const configuration = new Configuration({
-      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-    });
+    const { response, codeDescription } = this.state;
+    if (!codeDescription) return;
+    const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
     const openai = new OpenAIApi(configuration);
-  
-    openai
-      .createCompletion({
-        model: "text-davinci-002",
-        prompt: `I have a code snippet and a description. Please explain the syntax of the code and why it works in a way that someone who doesn't understand how to read code can comprehend.\n\nCode Snippet:\n${codeSnippet}\n\nDescription: ${codeDescription}\n\nSyntax Explanation:`,
-        temperature: 0.5,
-        max_tokens: 500,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      })
-      .then((response) => {
-        const explainCodeResponse = response.data.choices[0].text;
-        console.log("Explain Code Response:", explainCodeResponse);
-        this.setState({ codeExplanation: explainCodeResponse });
-      });
+    openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `IMPORTANT: Please do not include any personal information, such as names, emails, phone numbers, or other identifying details. Keep all examples and descriptions generic. This is for privacy and security purposes. Thank you. I have a code snippet and a description. Please explain the syntax of the code and why it works in a way that someone who doesn't understand how to read code can comprehend. Break down the explanation into smaller parts, such as the purpose of each line or block of code, the role of certain variables, and the relationship between different parts of the code. Use the actual code lines in your explanation wherever appropriate, and surround each code line or expression with backticks.\n\nCode Snippet:\n${response}\n\nDescription: ${codeDescription}\n\nDetailed Syntax Explanation:\n\nExample: "In the line \`{code_line}\`, it initializes a variable named... This variable is used later in the code to..."\n`,
+      temperature: 0.5,
+      max_tokens: 1000,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    }).then((response) => {
+      this.setState({ codeExplanation: response.data.choices[0].text });
+    });
   };
-  
   
   render() {
-    const { model, heading, response, aiActivated, showRerunButton, codeDescription, codeExplanation } = this.state;
+    const { model, heading, response, aiActivated, codeDescription, codeExplanation } = this.state;
   
     return (
-      <div>
+      <div style={{ backgroundColor: "#000000", color: "#00FFFF" }}>
         <Container>
-          <br />
-          <br />
           <h1 style={{ fontFamily: "Verdana", fontSize: "32px", textTransform: "uppercase" }}>Welcome to text-TO-code</h1>
-          <br />
-          <br />
-          <br />
-          <Form onSubmit={this.onFormSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label style={{ fontFamily: "Verdana", fontSize: "18px" }}>Insert TEXT you would like to convert to CODE</Form.Label>
-              <Form.Control as="textarea" rows={4} name="productName" placeholder="Enter Text" style={{ backgroundColor: "#000000", color: "#ffffff", verticalAlign: "top", outline: "none", resize: "none" }} onChange={this.handleDescriptionChange} />
-              <Form.Text className="text-muted">You can be as simple / detailed as you like!</Form.Text>
-            </Form.Group>
-            <Button variant="primary" size="lg" type="submit">
-              Launch AI
-            </Button>
-          </Form>
-  
-          <br />
-          <br />
-          <Card style={{ backgroundColor: "#000000", color: "#ffffff" }}>
-            <Card.Body>
-              <Card.Title>
-                <h1>{heading}</h1>
-              </Card.Title>
-              <hr />
-              <br />
-              <Card.Text style={{ fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace", fontSize: "16px", whiteSpace: "pre-wrap", wordWrap: "break-word", lineHeight: "1.5" }}>
-                <SyntaxHighlighter language="javascript" style={tomorrow}>
-                  {response}
-                </SyntaxHighlighter>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-  
+          <div style={{ display: "flex" }}>
+            <Form onSubmit={this.onFormSubmit} style={{ flex: 1 }}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Draggable>
+                  <Resizable width={300} height={350} onResizeStop={(e, data) => { console.log("Resized to", data.size); }}>
+                    <div className="input-container" style={{ display: "flex", flexDirection: "column", position: "relative", width: "100%" }}>
+                      <Form.Control as={TextareaAutosize} minRows={3} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
+                      <div style={{ position: "absolute", right: -30, top: 10 }}>
+                        <Button variant="primary" size="lg" type="submit">Launch AI</Button>
+                      </div>
+                    </div>
+                  </Resizable>
+                </Draggable>
+              </Form.Group>
+            </Form>
+            <div style={{ width: 50 }} />
+            <div style={{ flex: 1 }}>
+              <Card style={{ backgroundColor: "#000000", color: "#ffffff", height: "100%" }}>
+                <Card.Body style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                  <Card.Title><h1>{heading}</h1></Card.Title>
+                  <hr />
+                  <Card.Text style={{ fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace", fontSize: "16px", whiteSpace: "pre-wrap", wordWrap: "break-word", lineHeight: "1.5", flex: 1 }}>
+                    <SyntaxHighlighter language="javascript" style={neonTomorrow} customStyle={{ fontSize: '12px' }}>
+                      {response}
+                    </SyntaxHighlighter>                  
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
           {aiActivated && (
-            <div>
-              <br />
-              <br />
+            <div div className="output-container">
               <Form onSubmit={this.onExplainSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label style={{ fontFamily: "Verdana", fontSize: "18px" }}>Explain the code</Form.Label>
-                  <Button variant="primary" size="lg" type="submit">
-                    Explain
-                  </Button>
+                  <Button variant="primary" size="lg" type="submit">Smart Tips</Button>
                 </Form.Group>
               </Form>
-  
-              <br />
-              <br />
               <Card style={{ backgroundColor: "#000000", color: "#ffffff" }}>
-                <Card.Body>
-                  <Card.Title>
-                    <h1>Explanation</h1>
-                  </Card.Title>
+                <Card.Body>                  
                   <hr />
-                  <br />
                   <Card.Text style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif", fontSize: "16px" }}>
-                    {codeExplanation}
+                    <CustomSyntaxHighlighter explanation={codeExplanation} />
                   </Card.Text>
                 </Card.Body>
               </Card>
             </div>
           )}
         </Container>
-  
-        <br /><br /><br /><br />
+        <br/><br/><br/><br/>
       </div>
     );
   }
