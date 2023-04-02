@@ -40,11 +40,17 @@ class ProductDescription extends Component {
       const filteredResponse = response.data.choices[0].text.replace(/PERSONAL_INFO_REGEX/g, "*****");
       
       this.setState({
+  
         heading: `AI TTC output below`,
+        
+    
+  
+        
         response: filteredResponse,
         aiActivated: true,
         showRerunButton: true,
       }, () => {
+        
         this.setState({ codeDescription: formDataObj.productName });
       });
     });
@@ -75,7 +81,7 @@ class ProductDescription extends Component {
     const { model, heading, response, aiActivated, codeDescription, codeExplanation } = this.state;
   
     return (
-      <div style={{ backgroundColor: "#000000", color: "#00FFFF" }}>
+      <div style={{ backgroundColor: "#0a0a0a", color: "#00FFFF" }}>
         <Container>
           <br/>
           <br/>
@@ -90,10 +96,10 @@ class ProductDescription extends Component {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Draggable>
                   <Resizable width={300} height={350} onResizeStop={(e, data) => { console.log("Resized to", data.size); }}>
-                    <div className="input-container" style={{ display: "flex", flexDirection: "column", position: "relative", width: "100%" ,border:"1px solid #dfdfdf"}}>
-                      <Form.Control as={TextareaAutosize} minRows={3} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
+                    <div className="input-container" style={{borderRadius:'5px', display: "flex", flexDirection: "column", resize:'both',position: "relative", width: "100%" ,border:"1px solid #dfdfdf"}}>
+                      <Form.Control as={TextareaAutosize} minRows={3} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ resize:'both',backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
                       <div style={{ position: "absolute", right: 25, top: 10 }}>
-                        <Button variant="dark" size="lg" type="submit">Launch AI</Button>
+                        <Button variant="dark" size="lg" type="submit" style={{backgroundColor: 'black', borderColor: 'aqua', border: '1px solid aqua'}}>Launch AI</Button>
                       </div>
                     </div>
                   </Resizable>
@@ -105,7 +111,9 @@ class ProductDescription extends Component {
               <Draggable>
               <Card style={{ backgroundColor: "black", color: "#ffffff", height: "100%" ,border:"1px solid #dfdfdf"}}>
                 <Card.Body style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-                  <Card.Title><h1>{heading}</h1></Card.Title>
+              
+
+                  <Card.Title style={{fontSize:'32px'}}>{heading}</Card.Title>
                   <hr />
                   <Card.Text style={{ fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace", fontSize: "16px", whiteSpace: "pre-wrap", wordWrap: "break-word", lineHeight: "1.5", flex: 1 }}>
                     <SyntaxHighlighter language="javascript">{response}</SyntaxHighlighter>
@@ -116,16 +124,20 @@ class ProductDescription extends Component {
             </div>
           </div>
           {aiActivated && (
+          
+
             <div div className="output-container">
+              <br/>
+              <br/>
               <Form onSubmit={this.onExplainSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Button variant="primary" size="lg" type="submit">Smart Tips</Button>
+                  <Button variant="dark" size="lg" type="submit" style={{backgroundColor: 'black', borderColor: 'aqua', border: '1px solid aqua'}}>Smart Tips</Button>
                 </Form.Group>
               </Form>
-              <Card style={{ backgroundColor: "#000000", color: "#ffffff" }}>
-                <Card.Body>
-                      <hr />
-                  <Card.Text style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif", fontSize: "16px" }}>
+              <Card style={{ backgroundColor: "#0a0a0a", color: "#ffffff" }}>
+                <Card.Body>                  
+                  <hr />
+                  <Card.Text style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif", fontSize: "12px" }}>
                 
                   </Card.Text>
                 </Card.Body>

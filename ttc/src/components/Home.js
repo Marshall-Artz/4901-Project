@@ -24,7 +24,7 @@ class Home extends Component{
                     <div className="container" style={{textAlign: 'center'}}>
                         <h3 style={{fontFamily:'Verdana',fontSize : '26px', color: 'aqua', marginBottom: '20px'}}>Learn how to write, edit, and think in code</h3>
                         
-                        <p style={{fontFamily:'Verdana',fontSize : '18px', color: 'aqua', lineHeight: '1.5'}}>
+                        <p style={{fontFamily:'Verdana',fontSize : '18px', color: 'white', lineHeight: '1.5'}}>
                             This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding.
                         </p>
                         <br/>
