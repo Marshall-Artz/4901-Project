@@ -30,7 +30,7 @@ class Navigation extends Component {
           collapseOnSelect
         >
           <Navbar.Brand href="/">
-            <img alt={"logo"} src={logo} width="50px" />
+            <img alt={"logo"} src={logo} width="50px"/>
             
           </Navbar.Brand>
 
