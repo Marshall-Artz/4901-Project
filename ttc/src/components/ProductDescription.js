@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import CustomSyntaxHighlighter from './CustomSyntaxHighlighter';
 import { Resizable } from "react-resizable";
-import "react-resizable/css/styles.css";
 import Draggable from "react-draggable";
 import TextareaAutosize from "react-textarea-autosize";
-// import { neonTomorrow } from './neonTomorrow';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const { Configuration, OpenAIApi } = require("openai");
 const LRU = require("lru-cache");
@@ -20,8 +17,6 @@ class ProductDescription extends Component {
       response: "... awaiting input ...",
       aiActivated: false,
       showRerunButton: false,
-      codeDescription: "",
-      codeExplanation: "",
     };
     this.cache = new LRU({ max: 100 });
   }
@@ -54,6 +49,7 @@ class ProductDescription extends Component {
       });
     });
   };
+
   
 
   onExplainSubmit = (e) => {
@@ -84,7 +80,7 @@ class ProductDescription extends Component {
           <br/>
           <br/>
           <br/>
-
+    
           <h1 style={{ fontFamily: "Verdana", fontSize: "32px", textTransform: "uppercase" }}>Welcome to text-TO-code</h1>
           <br/>
           <br/>
@@ -94,8 +90,8 @@ class ProductDescription extends Component {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Draggable>
                   <Resizable width={300} height={350} onResizeStop={(e, data) => { console.log("Resized to", data.size); }}>
-                    <div className="input-container" style={{ display: "flex", flexDirection: "column", resize:'both',position: "relative", width: "100%" ,border:"1px solid #dfdfdf"}}>
-                      <Form.Control as={TextareaAutosize} minRows={3} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ resize:'both',backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
+                    <div className="input-container" style={{ display: "flex", flexDirection: "column", position: "relative", width: "100%" ,border:"1px solid #dfdfdf"}}>
+                      <Form.Control as={TextareaAutosize} minRows={3} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
                       <div style={{ position: "absolute", right: 25, top: 10 }}>
                         <Button variant="dark" size="lg" type="submit">Launch AI</Button>
                       </div>
@@ -107,12 +103,12 @@ class ProductDescription extends Component {
             <div style={{ width: 50 }} />
             <div style={{ flex: 1 }}>
               <Draggable>
-              <Card style={{ backgroundColor: "#000000", color: "#ffffff", height: "100%" ,border:"1px solid #dfdfdf"}}>
+              <Card style={{ backgroundColor: "black", color: "#ffffff", height: "100%" ,border:"1px solid #dfdfdf"}}>
                 <Card.Body style={{ height: "100%", display: "flex", flexDirection: "column" }}>
                   <Card.Title><h1>{heading}</h1></Card.Title>
                   <hr />
                   <Card.Text style={{ fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace", fontSize: "16px", whiteSpace: "pre-wrap", wordWrap: "break-word", lineHeight: "1.5", flex: 1 }}>
-                                  
+                    <SyntaxHighlighter language="javascript">{response}</SyntaxHighlighter>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -127,8 +123,8 @@ class ProductDescription extends Component {
                 </Form.Group>
               </Form>
               <Card style={{ backgroundColor: "#000000", color: "#ffffff" }}>
-                <Card.Body>                  
-                  <hr />
+                <Card.Body>
+                      <hr />
                   <Card.Text style={{ fontFamily: "Verdana, Geneva, Tahoma, sans-serif", fontSize: "16px" }}>
                 
                   </Card.Text>

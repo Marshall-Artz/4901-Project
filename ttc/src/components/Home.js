@@ -1,7 +1,6 @@
 import React from "react"
 import { Component } from "react"
-import { Container, Row, Col, Carousel } from "react-bootstrap"
-import Display from "./Display"
+import { Container } from "react-bootstrap"
 import logo from "../logo.svg"
 
 
