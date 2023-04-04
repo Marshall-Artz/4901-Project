@@ -4,8 +4,8 @@ import { Resizable } from "react-resizable";
 import Draggable from "react-draggable";
 import TextareaAutosize from "react-textarea-autosize";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { neonTomorrow } from "./neonTomorrow";
-import "./PD.css"
+//import { neonTomorrow } from "./neonTomorrow";
+//import "./PD.css"
 const { Configuration, OpenAIApi } = require("openai");
 const LRU = require("lru-cache");
 
@@ -119,7 +119,7 @@ class ProductDescription extends Component {
                       </Card.Title>
                       <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" >
                           {response}
                         </SyntaxHighlighter>
 
@@ -154,7 +154,7 @@ class ProductDescription extends Component {
                       </Card.Title>
                       <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" >
                           {codeExplanation}
                         </SyntaxHighlighter>
                       </Card.Text>
