@@ -76,7 +76,6 @@ class ProductDescription extends Component {
           <br /><br /><br />
           <h1 style={{ fontFamily: "Verdana", fontSize: "32px", textTransform: "uppercase" }}>Welcome to text-TO-code</h1>
           <br /><br /><br />
-          console.log({process.env.REACT_APP_OPENAI_API_KEY})
           <div style={{ display: "flex", backgroundColor: "#0a0a0a" }}>
             <Form onSubmit={this.onFormSubmit} style={{ flex: 1 }}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
