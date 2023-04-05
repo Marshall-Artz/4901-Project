@@ -119,7 +119,7 @@ class ProductDescription extends Component {
                       </Card.Title>
                       <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)}>
                           {response}
                         </SyntaxHighlighter>
 
@@ -154,7 +154,7 @@ class ProductDescription extends Component {
                       </Card.Title>
                       <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)}>
                           {codeExplanation}
                         </SyntaxHighlighter>
                       </Card.Text>
