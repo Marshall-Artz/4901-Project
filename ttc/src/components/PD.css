@@ -21,3 +21,19 @@
     border-color: aqua;
     border: 1px solid aqua;
   }
+  
+  .submit-button:active {
+    animation: button-active 0.1s ease-in-out forwards;
+  }
+
+@keyframes button-active {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

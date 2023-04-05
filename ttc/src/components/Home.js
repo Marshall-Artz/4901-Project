@@ -1,7 +1,9 @@
 import React from "react"
 import { Component } from "react"
 import { Container } from "react-bootstrap"
+import { Link } from "react-router-dom";
 import logo from "../logo.svg"
+import "./Home.css"
 
 
 class Home extends Component{
@@ -28,23 +30,21 @@ class Home extends Component{
                             This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding.
                         </p>
                         <br/>
-                        <a href="/products-description">
-                        <button 
-                            theLink="/products-description" 
-                            type="button" 
-                            className="btn btn-dark" 
-                            style={{
-                            fontFamily:'Verdana',
-                            fontSize : '18px', 
-                            backgroundColor: 'black', 
-                            borderColor: 'aqua', 
-                            color: 'white',
-                            padding: '10px 40px'
-                            }}
-                        >
-                            Get Started
-                        </button>  
-</a>
+                        <Link to="/products-description">
+                            <button 
+                                type="button" 
+                                className="btn btn-dark" 
+                                style={{
+                                    fontFamily:'Verdana',
+                                    fontSize : '18px', 
+                                    backgroundColor: 'black', 
+                                    borderColor: 'aqua', 
+                                    color: 'white',
+                                    padding: '10px 40px'
+                                }}>
+                                Get Started
+                            </button>  
+                        </Link>
                     </div>
                     <br/>
                     <br/>
