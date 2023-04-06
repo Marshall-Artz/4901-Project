@@ -3,7 +3,7 @@ export const neonKeywords = {
       fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace',
       fontSize: '14px',
       color: '#FFFFFF', // white
-      backgroundColor: '#000000' // black
+      background: '#000000' // black
     },
     'code[class*="language-"]::-moz-selection': {
       background: '#00FFFF' // neon cyan
