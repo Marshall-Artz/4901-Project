@@ -19,12 +19,13 @@ class ProductDescription extends Component {
       aiActivated: false,
       showRerunButton: false,
       spinnerHidden: true,
+      syntaxHighlighterHidden: false,
     };
     this.cache = new LRU({ max: 100 });
   }
 
   onFormSubmit = (e) => {
-    this.setState({ response: "", spinnerHidden: false}); // Loading Message & Spinner
+    this.setState({ response: "", spinnerHidden: false, syntaxHighlighterHidden: true}); // Loading Message & Spinner
     e.preventDefault();
     const formDataObj = Object.fromEntries(new FormData(e.target).entries());
     const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
@@ -46,7 +47,7 @@ class ProductDescription extends Component {
         aiActivated: true,
         showRerunButton: true,
       }, () => {
-        this.setState({ codeDescription: formDataObj.productName, spinnerHidden: true });
+        this.setState({ codeDescription: formDataObj.productName, spinnerHidden: true, syntaxHighlighterHidden: false});
       });
     });
   };
@@ -114,23 +115,21 @@ class ProductDescription extends Component {
                     console.log("Resized to", data.size);
                   }}
                 >
-                  <div>
                   <Card style={{ backgroundColor: '#000000', color: '#ffffff', height: "100%" }}>
                     <Card.Body>
                       <Card.Title>
                         <h1>{heading}</h1>
                       </Card.Title>
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)}>
+                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)} hidden={this.state.syntaxHighlighterHidden}>
                           {response}
                         </SyntaxHighlighter>
+                        <Spinner animation="border" role="status" hidden={this.state.spinnerHidden}>
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
                       </Card.Text>
                     </Card.Body>
                   </Card>
-                  <Spinner animation="border" role="status" hidden={this.state.spinnerHidden}>
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                  </div>
                 </Resizable>
               </Draggable>
             </div>

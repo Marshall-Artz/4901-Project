@@ -4,6 +4,6 @@ export const neonTomorrow = {
   ...tomorrow,
   'code[class*="language-"]': {
     ...tomorrow['code[class*="language-"]'],
-    color: '#FFFFFF' // aqua
+    color: '#FFFFFF'
   }
 };
