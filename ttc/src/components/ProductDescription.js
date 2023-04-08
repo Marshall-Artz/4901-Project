@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Form, Button, Card } from "react-bootstrap";
+import { Container, Form, Button, Card, Spinner } from "react-bootstrap";
 import { Resizable } from "react-resizable";
 import Draggable from "react-draggable";
 import TextareaAutosize from "react-textarea-autosize";
@@ -18,11 +18,14 @@ class ProductDescription extends Component {
       response: "... awaiting input ...",
       aiActivated: false,
       showRerunButton: false,
+      spinnerHidden: true,
+      syntaxHighlighterHidden: false,
     };
     this.cache = new LRU({ max: 100 });
   }
 
   onFormSubmit = (e) => {
+    this.setState({ response: "", spinnerHidden: false, syntaxHighlighterHidden: true}); // Loading Message & Spinner
     e.preventDefault();
     const formDataObj = Object.fromEntries(new FormData(e.target).entries());
     const configuration = new Configuration({ apiKey: process.env.REACT_APP_OPENAI_API_KEY });
@@ -44,7 +47,7 @@ class ProductDescription extends Component {
         aiActivated: true,
         showRerunButton: true,
       }, () => {
-        this.setState({ codeDescription: formDataObj.productName });
+        this.setState({ codeDescription: formDataObj.productName, spinnerHidden: true, syntaxHighlighterHidden: false});
       });
     });
   };
@@ -117,12 +120,13 @@ class ProductDescription extends Component {
                       <Card.Title>
                         <h1>{heading}</h1>
                       </Card.Title>
-                      <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)} hidden={this.state.syntaxHighlighterHidden}>
                           {response}
                         </SyntaxHighlighter>
-
+                        <Spinner animation="border" role="status" hidden={this.state.spinnerHidden}>
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -154,7 +158,7 @@ class ProductDescription extends Component {
                       </Card.Title>
                       <hr /><br />
                       <Card.Text style={{ fontFamily: 'Consolas, Monaco, \'Andale Mono\', \'Ubuntu Mono\', monospace', fontSize: '14px', whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: '1.5', height: "100%" }}>
-                        <SyntaxHighlighter language="javascript" style={neonTomorrow}>
+                        <SyntaxHighlighter language="javascript" style={(neonTomorrow)}>
                           {codeExplanation}
                         </SyntaxHighlighter>
                       </Card.Text>
