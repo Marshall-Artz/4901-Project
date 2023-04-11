@@ -100,6 +100,7 @@ class ProductDescription extends Component {
                       </div>
                     </div>
 
+
                   </Resizable>
                 </Draggable>
               </Form.Group>
