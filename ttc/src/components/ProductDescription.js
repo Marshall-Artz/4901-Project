@@ -92,13 +92,14 @@ class ProductDescription extends Component {
                       console.log("Resized to", data.size);
                     }}
                   >
-                    <div className="input-container" style={{ borderRadius: '1px', display: "flex", flexDirection: "column", position: "relative", height: "100%", width: "100%", border: "1px solid #dfdfdf" }}>
-                      <h2 style={{ color: '#00FFFF', textAlign: 'left' }}>Input Text</h2>
-                      <Form.Control as={TextareaAutosize} minRows={16} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ backgroundColor: "#000000", color: "#00FFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
+                    <div className="input-container" style={{ borderRadius: '5px', display: "flex", flexDirection: "column", position: "relative", height: "100%", width: "100%", border: "1px solid #dfdfdf" }}>
+                      <h2 style={{ color: 'white', textAlign: 'left' }}>Input Text</h2>
+                      <Form.Control as={TextareaAutosize} minRows={16} name="productName" placeholder="Insert TEXT you would like to convert to CODE" style={{ backgroundColor: "#2d2d2d", color: "#FFFFFF", verticalAlign: "top", outline: "none", resize: "none", width: "100%", height: "100%", marginRight: 10, border: "none", fontFamily: "Arial, Helvetica, sans-serif", '::placeholder': { color: 'aqua' } }} onChange={this.handleDescriptionChange} />
                       <div style={{ position: "absolute", right: 1, top: 1 }}>
                         <Button variant="dark" size="lg" type="submit" className="submit-button" style={{ width: "150px" }}>Activate AI</Button>
                       </div>
                     </div>
+
 
                   </Resizable>
                 </Draggable>
@@ -115,7 +116,7 @@ class ProductDescription extends Component {
                     console.log("Resized to", data.size);
                   }}
                 >
-                  <Card style={{ backgroundColor: '#000000', color: '#ffffff', height: "100%" }}>
+                  <Card style={{ backgroundColor: '#000000',border:"1px solid #ffffff", color: '#ffffff', height: "100%",borderRadius:"none" }}>
                     <Card.Body>
                       <Card.Title>
                         <h1>{heading}</h1>
