@@ -18,71 +18,70 @@ const Home = () => {
         <br />
         <h1
           style={{
-            fontFamily: "Verdana",
+            fontFamily: "Lato, sans-serif", // set the fontFamily property
             fontSize: "32px",
-            textTransform: "uppercase",
-            color: "aqua",
+            fontWeight: "bold",
+            color: darkMode ? "aqua" : "#0d47a1",
             textAlign: "center",
             marginBottom: "10px",
           }}
         >
           Welcome to text-TO-code
         </h1>
-        <p style={{ textAlign: "center", color: "aqua" }}>Powered by OpenAI</p>
-        <br />
-        <br />
+        <p style={{ textAlign: "center", color: darkMode ? "aqua" : "#0d47a1" }}>Powered by OpenAI</p>
         <div className="imgholder" style={{ textAlign: "center" }}>
-          <img alt="img" src={logo} style={{ backgroundColor: "aqua" }} width="400px" />
+          <img alt="img" src={logo} style={{ backgroundColor: darkMode ? "aqua" : "aqua" }} width="400px" />
         </div>
-        <br />
-        <br />
-        <hr className="my-4" style={{ borderColor: "aqua" }} />
+        <hr className="my-4" style={{ borderColor: darkMode ? "aqua" : "#0d47a1" }} />
         <div className="container" style={{ textAlign: "center" }}>
           <h3
             style={{
-              fontFamily: "Verdana",
+              fontFamily: "Lato, sans-serif", // set the fontFamily property
               fontSize: "26px",
-              color: "aqua",
+              fontWeight: "bold",
+              color: darkMode ? "aqua" : "#0d47a1",
               marginBottom: "20px",
             }}
           >
             Learn how to write, edit, and think in code
           </h3>
-
           <p
-            style={{
-              fontFamily: "Verdana",
-              fontSize: "18px",
-              color: darkMode ? "white" : "black",
-              lineHeight: "1.5",
-            }}
-          >
-            This platform will take your text and convert it into code. TTC is a supplemental educational tool that can help programmers of all levels (beginner - experienced). TTC not only converts your text to code, but it will also provide relevant tips on your prompts and elaborate on the code itself; describing how it works. Click the button below to begin! Happy learning, happy coding.
-          </p>
+  style={{
+    fontFamily: "Lato, sans-serif", // set the fontFamily property
+    fontSize: "18px",
+    color: darkMode ? "white" : "black",
+    lineHeight: "1.5",
+    textAlign: "justify", // add the textAlign property
+  }}
+>
+Welcome to codeMe, the innovative platform that transforms your written text into functional code! Our comprehensive educational tool caters to programmers of all levels, from aspiring novices to seasoned experts. With codeMe, not only can you effortlessly convert your text to code, but you can also benefit from our vast database of useful tips and insights. Our in-depth analysis and detailed explanations offer a unique and sophisticated learning experience that will take your coding skills to the next level. Click the button below to embark on a new and exciting coding journey with codeMe. Get ready to discover the endless possibilities of coding and unlock your true potential. Happy learning, happy coding!
+
+</p>
           <br/>
-                        <Link to="/products-description">
-                            <button 
-                                type="button" 
-                                className="btn btn-dark" 
-                                style={{
-                                    fontFamily:'Verdana',
-                                    fontSize : '18px', 
-                                    backgroundColor: darkMode ? 'black' : 'white',
-                                    borderColor: 'aqua', 
-                                    color: darkMode ? 'white' : 'black',
-                                    padding: '10px 40px'
-                                }}>
-                                Get Started
-                            </button>  
-                        </Link>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+          <Link to="/products-description">
+            <button 
+              type="button" 
+              className="btn btn-dark" 
+              style={{
+                fontFamily: 'Lato, sans-serif', // set the fontFamily property
+                fontSize : '18px', 
+                backgroundColor: darkMode ? 'black' : 'white',
+                borderColor: darkMode ? 'aqua' : '#0d47a1',
+                color: darkMode ? 'white' : 'black',
+                padding: '10px 40px'
+              }}
+            >
+              Get Started
+            </button>  
+          </Link>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
                     <div style={{position: 'fixed', top: '100px', right: '30px', textAlign: 'center'}}>
-          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: 'aqua', color: 'aqua'}}>
+          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: 'aqua', color: 'white'}}>
             {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>

@@ -1,5 +1,5 @@
 .btn-dark:active {
-    animation: button-active 0.3s ease-in-out forwards;
+    animation: button-active 0.5s ease-in-out forwards;
   }
 
 .btn-dark:hover {
