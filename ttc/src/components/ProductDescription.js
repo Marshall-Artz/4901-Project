@@ -40,8 +40,8 @@ class ProductDescription extends Component {
     openai.createCompletion({
       model: this.state.model,
       prompt: formDataObj.productName,
-      temperature: 0.25,
-      max_tokens: 1000,
+      temperature: 0.5,
+      max_tokens: 2000,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -68,9 +68,9 @@ class ProductDescription extends Component {
     const openai = new OpenAIApi(configuration);
     openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `IMPORTANT: Please do not include any personal information, such as names, emails, phone numbers, or other identifying details. Keep all examples and descriptions generic. This is for privacy and security purposes. Thank you. I have a code snippet and a description. Please explain the syntax of the code and why it works in a way that someone who doesn't understand how to read code can comprehend. IMPORTANT: BE VERY CONCISE. IMPORTANT: IMAGINE YOU ARE LISTING BULLET POINTS WORTH OF INFO, NOT FULL SENTENCES! COLOR CORDINATE EACH INVIDUAL VARIABLE. Break down the explanation into smaller parts\n such as the purpose of each line or block of code\n the role of certain variables\n and the relationship between different parts of the code\n Use the actual code lines in your explanation wherever appropriate.\n\nCode Snippet:\n${response}\n\nDescription: ${codeDescription}\n\nDetailed Syntax Explanation:\n\nExample: "Initialize a variable named \`{variable_name}\`... This variable is used later in the code to..."\n`,
+      prompt: `Please explain the code and how it works in a way that anyone can comprehend. IMAGINE YOU ARE LISTING BULLET POINTS WORTH OF INFO, NOT FULL SENTENCES! COLOR COORDINATE EACH INDIVIDUAL VARIABLE. IMPORTANT: EXPLAIN EVERY FUNCTION! EVERY LIBRARY! explain how given code meets the requirements. How does each line of code complete the task? \n\nCode Snippet:\n${response}\n\nDescription: \n\nDetailed Syntax Explanation:\n\nExample: \`{variable_name}\`... this line of code does ${codeDescription}..."\n`,
       temperature: 0.5,
-      max_tokens: 1000,
+      max_tokens: 2000,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -90,7 +90,7 @@ class ProductDescription extends Component {
             </button>
           </div>
           <br /><br /><br />
-          <h1 style={{ fontFamily: "Verdana", fontSize: "32px", textTransform: "uppercase" }}>Welcome to text-TO-code</h1>
+          <h1 style={{ fontFamily: "Verdana", fontSize: "32px", }}>codeMe...</h1>
           <br /><br /><br />
           <div style={{ display: "flex" }}>
             <Form onSubmit={this.onFormSubmit} style={{ flex: 1 }}>

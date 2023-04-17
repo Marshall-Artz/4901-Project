@@ -1,5 +1,5 @@
 .dark-mode .input-container .input-textarea {
-  background-color: #2d2d2d !important;
+  background-color: #000000 !important;
   color: #00FFFF !important;
 }
 
@@ -43,7 +43,7 @@
   }
   
   .output-container.dark-mode {
-    background-color: #2d2d2d !important;
+    background-color: #000000 !important;
     color: #00FFFF !important;  
   }
   
