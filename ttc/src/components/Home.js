@@ -26,7 +26,7 @@ const Home = () => {
             marginBottom: "10px",
           }}
         >
-          Welcome to text-TO-code
+          Welcome to codeMe
         </h1>
         <p style={{ textAlign: "center", color: darkMode ? "aqua" : "#0d47a1" }}>Powered by OpenAI</p>
         <div className="imgholder" style={{ textAlign: "center" }}>
@@ -54,7 +54,7 @@ const Home = () => {
     textAlign: "justify", // add the textAlign property
   }}
 >
-Welcome to codeMe, the innovative platform that transforms your written text into functional code! Our comprehensive educational tool caters to programmers of all levels, from aspiring novices to seasoned experts. With codeMe, not only can you effortlessly convert your text to code, but you can also benefit from our vast database of useful tips and insights. Our in-depth analysis and detailed explanations offer a unique and sophisticated learning experience that will take your coding skills to the next level. Click the button below to embark on a new and exciting coding journey with codeMe. Get ready to discover the endless possibilities of coding and unlock your true potential. Happy learning, happy coding!
+CodeMe, the innovative platform that transforms your written text into functional code! Our comprehensive educational tool caters to programmers of all levels, from aspiring novices to seasoned experts. With codeMe, not only can you effortlessly convert your text to code, but you can also benefit from our vast database of useful tips and insights. Our in-depth analysis and detailed explanations offer a unique and sophisticated learning experience that will take your coding skills to the next level. Click the button below to embark on a new and exciting coding journey with codeMe. Get ready to discover the endless possibilities of coding and unlock your true potential. Happy learning, happy coding!
 
 </p>
           <br/>
