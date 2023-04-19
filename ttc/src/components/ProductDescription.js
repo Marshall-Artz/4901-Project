@@ -22,6 +22,7 @@ class ProductDescription extends Component {
       spinnerHidden2: true,
       syntaxHighlighterHidden: false,
       darkMode: true, // Added darkMode state
+      showText: true, // Removes 'codeMe...' when first pressing activate ai
     };
     this.cache = new LRU({ max: 100 });
   }
@@ -54,7 +55,7 @@ class ProductDescription extends Component {
         aiActivated: true,
         showRerunButton: true,
       }, () => {
-        this.setState({ codeDescription: formDataObj.productName, spinnerHidden: true, syntaxHighlighterHidden: false });
+        this.setState({ codeDescription: formDataObj.productName, spinnerHidden: true, syntaxHighlighterHidden: false, showText: false });
       });
     });
   };
@@ -80,7 +81,7 @@ class ProductDescription extends Component {
   };
 
   render() {
-    const { heading, response, aiActivated, codeExplanation, darkMode } = this.state;
+    const { heading, response, aiActivated, codeExplanation, darkMode, showText } = this.state;
     return (
       <div style={{ backgroundColor: darkMode ? "#0a0a0a" : "#f4f4f4", color: darkMode ? "#00FFFF" : "#0d47a1" }}>
         <Container>
@@ -90,7 +91,9 @@ class ProductDescription extends Component {
             </button>
           </div>
           <br /><br /><br />
-          <h1 style={{ fontFamily: "Verdana", fontSize: "32px", }}>codeMe...</h1>
+          {showText && ( //added conditional rendering
+            <h1 style={{ fontFamily: "Verdana", fontSize: "32px", }}>codeMe...</h1>
+          )}
           <br /><br /><br />
           <div style={{ display: "flex" }}>
             <Form onSubmit={this.onFormSubmit} style={{ flex: 1 }}>
@@ -154,7 +157,6 @@ class ProductDescription extends Component {
                             //padding: '10px 40px'
                           }}
                           onClick={(e) => this.onFormSubmit(e)} // Update this line
-
                         >Activate AI</Button>
                       </div>
                     </div>
@@ -275,4 +277,3 @@ class ProductDescription extends Component {
   }
 }
 export default ProductDescription;
-
