@@ -81,7 +81,7 @@ CodeMe, the innovative platform that transforms your written text into functiona
         <br/>
         <br/>
                     <div style={{position: 'fixed', top: '100px', right: '30px', textAlign: 'center'}}>
-          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: 'aqua', color: 'white'}}>
+          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: darkMode ? "#0d47a1" : "aqua", color: darkMode ? "black" : "white", backgroundColor: darkMode ? "white" : "black"}}>
             {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>
