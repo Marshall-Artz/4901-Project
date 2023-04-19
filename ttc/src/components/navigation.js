@@ -10,7 +10,7 @@ class Navigation extends Component {
     return (
       <Navbar bg="dark" variant="dark" expand="md" sticky="top">
         <Navbar.Brand>
-          <img alt={"logo"} style={{ backgroundColor: "aqua", marginLeft: '20px', marginRight: '20px'}} src={logo} width="50px" className="mr-3" />
+          <img alt={"logo"} style={{ backgroundColor: "aqua", marginLeft: '20px', marginRight: '20px', borderRadius: 10}} src={logo} width="50px" className="mr-3" />
           <span className="navbar-text">Text-To-Code</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />

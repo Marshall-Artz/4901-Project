@@ -29,8 +29,8 @@ const Home = () => {
           Welcome to codeMe
         </h1>
         <p style={{ textAlign: "center", color: darkMode ? "aqua" : "#0d47a1" }}>Powered by OpenAI</p>
-        <div className="imgholder" style={{ textAlign: "center" }}>
-          <img alt="img" src={logo} style={{ backgroundColor: darkMode ? "aqua" : "aqua" }} width="400px" />
+        <div className="imgholder" style={{ textAlign: "center"}}>
+          <img alt="img" src={logo} style={{ backgroundColor: darkMode ? "aqua" : "#0d47a1", borderRadius: 30 }} width="400px" />
         </div>
         <hr className="my-4" style={{ borderColor: darkMode ? "aqua" : "#0d47a1" }} />
         <div className="container" style={{ textAlign: "center" }}>
