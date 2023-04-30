@@ -22,7 +22,7 @@ class ProductDescription extends Component {
       spinnerHidden2: true,
       syntaxHighlighterHidden: false,
       darkMode: true, // Added darkMode state
-      showText: true, // Removes 'codeMe...' when first pressing activate ai
+      showText: true, // Removes 'CodeMe...' when first pressing activate ai
     };
     this.cache = new LRU({ max: 100 });
   }
@@ -86,13 +86,13 @@ class ProductDescription extends Component {
       <div style={{ backgroundColor: darkMode ? "#0a0a0a" : "#f4f4f4", color: darkMode ? "#00FFFF" : "#0d47a1" }}>
         <Container>
           <div style={{ position: "fixed", top: "100px", right: "30px", textAlign: "center" }}>
-            <button onClick={this.handleModeChange} className="btn btn-dark" style={{ borderColor: darkMode ? "aqua" : "#0d47a1", color: darkMode ? "white" : "#0d47a1" }}>
+            <button onClick={this.handleModeChange} className="btn btn-dark" style={{ borderColor: darkMode ? "aqua" : "#0d47a1", color: darkMode ? "black" :  "white" , backgroundColor: darkMode ? "white" : "black"}}>
               {darkMode ? "Light Mode" : "Dark Mode"}
             </button>
           </div>
           <br /><br /><br />
           {showText && ( //added conditional rendering
-            <h1 style={{ fontFamily: "Verdana", fontSize: "32px", }}>codeMe...</h1>
+            <h1 style={{ fontFamily: "Lato, sans-serif", fontWeight: "bold", fontSize: "32px", }}>CodeMe...</h1>
           )}
           <br /><br /><br />
           <div style={{ display: "flex" }}>
@@ -152,7 +152,7 @@ class ProductDescription extends Component {
                             fontSize: '18px',
                             width: "150px",
                             backgroundColor: darkMode ? 'black' : 'white',
-                            borderColor: darkMode ? 'aqua' : '#aqua',
+                            borderColor: darkMode ? 'aqua' : '#0d47a1',
                             color: darkMode ? 'white' : 'black',
                             //padding: '10px 40px'
                           }}
