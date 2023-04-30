@@ -26,7 +26,7 @@ const Home = () => {
             marginBottom: "10px",
           }}
         >
-          Welcome to codeMe
+          Welcome to CodeMe
         </h1>
         <p style={{ textAlign: "center", color: darkMode ? "aqua" : "#0d47a1" }}>Powered by OpenAI</p>
         <div className="imgholder" style={{ textAlign: "center"}}>
@@ -81,7 +81,7 @@ CodeMe, the innovative platform that transforms your written text into functiona
         <br/>
         <br/>
                     <div style={{position: 'fixed', top: '100px', right: '30px', textAlign: 'center'}}>
-          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: darkMode ? "#0d47a1" : "aqua", color: darkMode ? "black" : "white", backgroundColor: darkMode ? "white" : "black"}}>
+          <button onClick={handleModeChange} className="btn btn-dark" style={{borderColor: darkMode ? "aqua": "#0d47a1", color: darkMode ? "black" : "white", backgroundColor: darkMode ? "white" : "black"}}>
             {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>
